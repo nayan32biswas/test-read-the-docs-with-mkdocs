@@ -11,15 +11,15 @@ fastapi = "^0.88.0"
 passlib = "1.7.4"
 pydantic = "~1.10.2"
 pyjwt = "~2.6.0"
-pymongo = {version = "~4.3.3", extras = ["srv"]}
+pymongo = { version = "~4.3.3", extras = ["srv"] }
 python-multipart = "0.0.5"
 typer = "0.7.0"
 uvicorn = "0.18.2"
-mongodb-odm = {git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "doc"}
+mongodb-odm = { git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "doc" }
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10"
-coverage = {extras = ["toml"], version = "^6.2"}
+coverage = { extras = ["toml"], version = "^6.2" }
 ipython = { version = "^7.31", python = "^3.8" }
 pre-commit = "^2.20"
 pytest = "^7.2"
@@ -28,3 +28,16 @@ requests = "^2.26"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+parallel = true
+source = ["tests"]
+context = '${CONTEXT}'
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "@overload",
+    'if __name__ == "__main__":',
+    "if TYPE_CHECKING:",
+]
