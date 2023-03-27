@@ -86,3 +86,4 @@ urllib3==1.26.15
     # via requests
 watchdog==3.0.0
     # via mkdocs
+mdx-include==1.4.2
