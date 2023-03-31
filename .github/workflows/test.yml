@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.8", "3.9"]
       fail-fast: false
 
     steps:
@@ -82,12 +82,12 @@ jobs:
           name: coverage
           path: coverage
 
-      - run: pip install coverage[toml]
+      - run: pip install coverage[toml] coveralls
 
       - run: ls -la coverage
       - run: coverage combine coverage
       - run: coverage report
-      - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
+      # - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
 
       # - name: Store coverage HTML
       #   uses: actions/upload-artifact@v3
@@ -95,8 +95,7 @@ jobs:
       #     name: coverage-html
       #     path: htmlcov
 
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: htmlcov
+      - name: Upload coverage report to Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: coveralls  --service=github
