@@ -60,43 +60,21 @@ jobs:
           MONGO_URL: mongodb://localhost:27017/testdb
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
-      - name: Store coverage files
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: coverage
-  coverage-combine:
-    needs: [test]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.8"
-
-      - name: Get coverage files
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage
-          path: coverage
-
-      - run: pip install coverage[toml] coveralls
-
-      - run: ls -la coverage
-      - run: coverage combine coverage
-      - run: coverage report
-      # - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
-
-      # - name: Store coverage HTML
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: coverage-html
-      #     path: htmlcov
-
-      - name: Upload coverage report to Coveralls
+      - name: Upload coverage data to coveralls.io
+        run: coveralls --service=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: coveralls  --service=github
+          COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
+          COVERALLS_PARALLEL: true
+  coveralls:
+    name: Indicate completion to coveralls.io
+    needs: test
+    runs-on: ubuntu-latest
+    container: python:3-slim
+    steps:
+    - name: Finished
+      run: |
+        pip3 install --upgrade coveralls
+        coveralls --service=github --finish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
