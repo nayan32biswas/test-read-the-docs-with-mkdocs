@@ -87,12 +87,16 @@ jobs:
       - run: ls -la coverage
       - run: coverage combine coverage
       - run: coverage report
-      - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
+      - run: coverage xml --show-contexts --title "Coverage for ${{ github.sha }}"
 
-      - name: Store coverage HTML
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-html
-          path: htmlcov
+      # - name: Store coverage HTML
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: coverage-html
+      #     path: htmlcov
+
       - name: Coveralls
         uses: coverallsapp/github-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage.xml
