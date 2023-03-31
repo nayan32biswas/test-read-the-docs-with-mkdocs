@@ -15,7 +15,7 @@ pymongo = { version = "~4.3.3", extras = ["srv"] }
 python-multipart = "0.0.5"
 typer = "0.7.0"
 uvicorn = "0.18.2"
-mongodb-odm = { git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "doc" }
+mongodb-odm = { git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "main" }
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10"
