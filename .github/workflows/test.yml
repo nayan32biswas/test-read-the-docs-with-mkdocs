@@ -94,3 +94,5 @@ jobs:
         with:
           name: coverage-html
           path: htmlcov
+      - name: Coveralls
+        uses: coverallsapp/github-action@v1
