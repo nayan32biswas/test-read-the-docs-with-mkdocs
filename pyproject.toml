@@ -7,24 +7,25 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.88.0"
-passlib = "1.7.4"
-pydantic = "~1.10.2"
-pyjwt = "~2.6.0"
-pymongo = { version = "~4.3.3", extras = ["srv"] }
-python-multipart = "0.0.5"
-typer = "0.7.0"
-uvicorn = "0.18.2"
-mongodb-odm = { git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "main" }
+pymongo = { version = "^4.3.3", extras = ["srv"] }
+pydantic = "^1.8.2"
+
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.10"
-coverage = { extras = ["toml"], version = "^6.2" }
-ipython = { version = "^7.31", python = "^3.8" }
-pre-commit = "^2.20"
-pytest = "^7.2"
-requests = "^2.26"
-coveralls = "3.3.1"
+# Formatter and linters
+black = "^23.9.0"
+mypy = "1.5.0"
+ruff = "^0.1.5"
+# Test
+coverage = { extras = ["toml"], version = "^7.2.2" }
+pytest = "^7.2.2"
+# Doc generators
+mdx-include = "^1.4.2"
+mkdocs = "^1.4.2"
+mkdocs-material = "^9.1.4"
+# Others
+pre-commit = "^3.3.3"
+pip-tools = "^7.3.0"
 
 [build-system]
 requires = ["poetry-core"]

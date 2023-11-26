@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"]},"docs":[{"location":"","title":"Testing read the docs","text":""},{"location":"#intro","title":"Intro","text":"<p>intro</p>"},{"location":"#inner-intro","title":"Inner Intro","text":"<p>Inner Intro</p>"}]}
