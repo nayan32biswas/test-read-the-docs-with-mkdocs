@@ -9,7 +9,7 @@ readme = "README.md"
 python = "^3.8"
 pymongo = { version = "^4.3.3", extras = ["srv"] }
 pydantic = "^1.8.2"
-
+mongodb-odm = { git = "https://github.com/nayan32biswas/mongodb-odm.git", rev = "main" }
 
 [tool.poetry.group.dev.dependencies]
 # Formatter and linters
